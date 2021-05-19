@@ -31,13 +31,14 @@ namespace PaymentMock.Controllers
         [HttpPost("PAYMENT")]
         public IEnumerable<Account> Pay(PaymentInput input)
         {
-            return _paymentService.GetAccounts(input);
+            _paymentService.Pay(input);
+            return _paymentService.GetAccounts();
         }
 
         [HttpPost("ADJUSTMENT")]
         public IEnumerable<Account> Adjust(PaymentInput input)
         {
-            return _paymentService.GetAccounts(input);
+            return _paymentService.GetAccounts();
         }
     }
 }

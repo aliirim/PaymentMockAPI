@@ -6,13 +6,13 @@ namespace PaymentMock
     public class AppContext: DbContext
     {
        
-            public AppContext(DbContextOptions<AppContext> options)
+        public AppContext(DbContextOptions<AppContext> options)
                 : base(options)
-            {
+        { 
             AddTestData(this);
-            }
+        }
 
-            public DbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         private static void AddTestData(AppContext context)
         {
@@ -39,7 +39,6 @@ namespace PaymentMock
             };
 
             context.Accounts.Add(data3);
-
 
             context.SaveChanges();
         }
