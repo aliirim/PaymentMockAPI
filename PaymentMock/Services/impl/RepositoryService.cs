@@ -33,6 +33,7 @@ namespace PaymentMock.Services.impl
             account.Balance = newAmount;
             
             InitDataContext.Accounts.Update(account);
+            InitDataContext.SaveChanges();
         }
 
         public void AddPaymentInput(PaymentInput paymentInput)
