@@ -53,5 +53,56 @@ namespace PaymentMockTest
             
             Assert.Equal("Transaction not found", exception.Message);
         }
+
+        [Fact(DisplayName = "When the payment has been calculated successfully")]
+        public void SuccessfulPayment()
+        {
+            MockRepositoryService repositoryService = new MockRepositoryService();
+            PaymentService paymentService = new PaymentService(repositoryService);
+
+            paymentService.Pay(new PaymentInput()
+            {
+                AccountId = 4755,
+                MessageType = "PAYMENT",
+                TransactionId = 1,
+                Origin = "VISA",
+                Amount = 100
+            });
+
+            decimal expectedResult = 900.88m;
+            decimal  amount = repositoryService.GetAmount(4755);
+            
+            Assert.Equal(expectedResult, amount);
+        }
+        
+        [Fact(DisplayName = "When the adjustment has been calculated successfully")]
+        public void SuccessfulAdjustment()
+        {
+            MockRepositoryService repositoryService = new MockRepositoryService();
+            PaymentService paymentService = new PaymentService(repositoryService);
+
+            paymentService.Pay(new PaymentInput()
+            {
+                AccountId = 4755,
+                MessageType = "PAYMENT",
+                TransactionId = 1,
+                Origin = "VISA",
+                Amount = 100
+            });
+            
+            paymentService.Adjust(new PaymentInput()
+            {
+                AccountId = 4755,
+                MessageType = "ADJUSTMENT",
+                TransactionId = 1,
+                Origin = "VISA",
+                Amount = 50
+            });
+
+            decimal expectedResult = 950.88m;
+            decimal  amount = repositoryService.GetAmount(4755);
+            
+            Assert.Equal(expectedResult, amount);
+        }
     }
 }

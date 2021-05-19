@@ -41,6 +41,7 @@ namespace PaymentMock.Services.impl
             repositoryService.UpdateAccount(input.AccountId, newAmount);
         }
 
+        //Assumption: A transaction for an account can be corrected only once.        
         public void Adjust(PaymentInput input)
         {
             CheckInputMessage(input, MessageTypeAdjustment);

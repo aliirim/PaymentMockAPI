@@ -46,17 +46,7 @@ namespace PaymentMock.Services.impl
 
             return data.Where(item => item.AccountId == accountId && item.TransactionId == transactionId).ToList();
         }
-        
-        /*public void UpdatePaymentInfo(int accountId, int transactionId, decimal amount)
-        {
-            PaymentInput paymentInput = GetPaymentInputsByAccountIdAndTransactionId(accountId, transactionId)[0];
 
-            paymentInput.Amount = amount;
-            
-            --InitDataContext.Accounts.Update(account);
-        }*/
-        
         private List<PaymentInput> GetPaymentInputs() => RepositoryService.PaymentInputs;
-
     }
 }
