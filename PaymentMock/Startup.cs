@@ -22,6 +22,7 @@ namespace PaymentMock
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<InitDataContext>(opt => opt.UseInMemoryDatabase("payment"));
+            services.AddDbContext<MessageDataContext>(opt => opt.UseInMemoryDatabase("payment"));
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<RepositoryService>();
             
