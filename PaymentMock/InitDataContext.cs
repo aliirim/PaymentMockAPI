@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PaymentMock.DTOs;
 
 namespace PaymentMock
@@ -16,31 +17,34 @@ namespace PaymentMock
 
         private static void AddTestData(InitDataContext context)
         {
-            var data1 = new Account
+            if (context.Accounts.Count() == 0)
             {
-                AccountId = 4755,
-                Balance = 1001.88m
-            };
+                var data1 = new Account
+                {
+                    AccountId = 4755,
+                    Balance = 1001.88m
+                };
 
-            context.Accounts.Add(data1);
+                context.Accounts.Add(data1);
 
-            var data2 = new Account
-            {
-                AccountId = 9834,
-                Balance = 456.45m
-            };
+                var data2 = new Account
+                {
+                    AccountId = 9834,
+                    Balance = 456.45m
+                };
 
-            context.Accounts.Add(data2);
+                context.Accounts.Add(data2);
 
-            var data3 = new Account
-            {
-                AccountId = 7735,
-                Balance = 89.36m
-            };
+                var data3 = new Account
+                {
+                    AccountId = 7735,
+                    Balance = 89.36m
+                };
 
-            context.Accounts.Add(data3);
+                context.Accounts.Add(data3);
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
     }
 

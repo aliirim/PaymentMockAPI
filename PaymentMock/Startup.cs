@@ -24,7 +24,7 @@ namespace PaymentMock
             services.AddDbContext<InitDataContext>(opt => opt.UseInMemoryDatabase("payment"));
             services.AddDbContext<MessageDataContext>(opt => opt.UseInMemoryDatabase("payment"));
             services.AddScoped<IPaymentService, PaymentService>();
-            services.AddScoped<RepositoryService>();
+            services.AddScoped<IRepositoryService, RepositoryService>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>

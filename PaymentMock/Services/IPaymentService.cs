@@ -6,7 +6,7 @@ namespace PaymentMock.Services
 {
     public interface IPaymentService
     {
-        Account Adjust(PaymentInput input);
+        void Adjust(PaymentInput input);
         void Pay(PaymentInput input);
         List<Account> GetAccounts();
     }
