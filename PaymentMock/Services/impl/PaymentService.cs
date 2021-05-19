@@ -32,17 +32,17 @@ namespace PaymentMock.Services.impl
         {
             if (!CheckMessageType(MessageTypePayment, input.MessageType))
             {
-                throw new Exception("Type is not valid");
-            };
+                throw new Exception("Message Type is not valid");
+            }
 
-            List<Account> accounts = this.repositoryService.GetAccounts();
-
+            List<Account> accounts = repositoryService.GetAccounts();
+            
             if (accounts.Find(item => item.AccountId == input.AccountId)== null)
             {
-                throw new Exception("Account not found.");
+                throw new Exception("Account not found");
             }
             
-            this.repositoryService.AddPaymentInput(input);
+            repositoryService.AddPaymentInput(input);
             
             decimal commission = CalculateCommission(input.Origin, input.Amount);
             decimal currentAmount = repositoryService.GetAmount(input.AccountId);

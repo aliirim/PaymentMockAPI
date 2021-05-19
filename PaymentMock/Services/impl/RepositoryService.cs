@@ -5,15 +5,6 @@ using PaymentMock.DTOs.Request;
 
 namespace PaymentMock.Services.impl
 {
-    public interface IRepositoryService
-    {
-        List<Account> GetAccounts();
-        decimal GetAmount(int accountId);
-        void UpdateAccount(int accountId, decimal newAmount);
-        void AddPaymentInput(PaymentInput paymentInput);
-        List<PaymentInput> GetPyPaymentInputs();
-    }
-
     public class RepositoryService : IRepositoryService
     {
         private static readonly List<PaymentInput> PaymentInputs = new List<PaymentInput>();

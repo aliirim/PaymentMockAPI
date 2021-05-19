@@ -18,7 +18,7 @@ namespace PaymentMockTest
                 
             }));
             
-            Assert.Equal("Type is not valid", exception.Message);
+            Assert.Equal("Message Type is not valid", exception.Message);
 
         }
         
@@ -34,7 +34,7 @@ namespace PaymentMockTest
                 MessageType = "PAYMENT"
             }));
             
-            Assert.Equal("Account not found.", exception.Message);
+            Assert.Equal("Account not found", exception.Message);
 
         }
     }
