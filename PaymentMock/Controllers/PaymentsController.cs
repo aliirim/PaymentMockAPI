@@ -39,7 +39,6 @@ namespace PaymentMock.Controllers
         public IEnumerable<Account> Adjust(PaymentInput input)
         {
             _paymentService.Adjust(input);
-            
             return _paymentService.GetAccounts();
         }
     }

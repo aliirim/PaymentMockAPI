@@ -8,7 +8,7 @@ namespace PaymentMockTest
     public class PaymentServiceTest
     {
         [Fact(DisplayName = "Throws type is not valid when type is not provided")]
-        public void InvalidType()
+        public void InvalidMessageType()
         {
             MockRepositoryService repositoryService = new MockRepositoryService();
             PaymentService paymentService = new PaymentService(repositoryService);

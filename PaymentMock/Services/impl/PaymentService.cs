@@ -53,8 +53,9 @@ namespace PaymentMock.Services.impl
                 throw new Exception("Transaction not found");
             }
 
+            decimal currentAmount = repositoryService.GetAmount(input.AccountId);
             decimal oldAmount = paymentInputs[0].Amount;
-            decimal correctedAmount = input.Amount + oldAmount - input.Amount;
+            decimal correctedAmount = currentAmount + oldAmount - input.Amount;
             
             repositoryService.UpdateAccount(input.AccountId, correctedAmount);
         }
