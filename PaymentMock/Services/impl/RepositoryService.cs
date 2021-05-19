@@ -6,30 +6,30 @@ namespace PaymentMock.Services.impl
 {
     public class RepositoryService
     {
-        private  AppContext AppContext { get; }
+        private  InitDataContext InitDataContext { get; }
         
-        public RepositoryService(AppContext appContext)
+        public RepositoryService(InitDataContext initDataContext)
         {
-            AppContext = appContext;
+            InitDataContext = initDataContext;
         }
         
         public List<Account> GetAccounts()
         {
-            return AppContext.Accounts.ToList();
+            return InitDataContext.Accounts.ToList();
         }
         
         public decimal GetAmount(int accountId)
         {
-            Account account = AppContext.Accounts.Find(accountId);
+            Account account = InitDataContext.Accounts.Find(accountId);
             return account.Balance;
         }
         
         public void UpdateAccount(int accountId, decimal newAmount)
         {
-            Account account = AppContext.Accounts.Find(accountId);
+            Account account = InitDataContext.Accounts.Find(accountId);
             account.Balance = newAmount;
             
-            AppContext.Accounts.Update(account);
+            InitDataContext.Accounts.Update(account);
         }
         
     }

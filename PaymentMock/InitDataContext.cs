@@ -3,10 +3,10 @@ using PaymentMock.DTOs;
 
 namespace PaymentMock
 {
-    public class AppContext: DbContext
+    public class InitDataContext: DbContext
     {
        
-        public AppContext(DbContextOptions<AppContext> options)
+        public InitDataContext(DbContextOptions<InitDataContext> options)
                 : base(options)
         { 
             AddTestData(this);
@@ -14,7 +14,7 @@ namespace PaymentMock
 
         public DbSet<Account> Accounts { get; set; }
 
-        private static void AddTestData(AppContext context)
+        private static void AddTestData(InitDataContext context)
         {
             var data1 = new Account
             {
