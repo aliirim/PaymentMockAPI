@@ -33,7 +33,7 @@ namespace PaymentMock.Services.impl
             
             decimal commission = CalculateCommission(input.Origin, input.Amount);
             decimal currentAmount = _repositoryService.GetAmount(input.AccountId);
-            decimal newAmount = currentAmount + input.Amount + commission;
+            decimal newAmount = currentAmount - input.Amount - commission;
             
             _repositoryService.UpdateAccount(input.AccountId, newAmount);
         }
