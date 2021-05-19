@@ -30,17 +30,7 @@ namespace PaymentMock.Services.impl
 
         public void Pay(PaymentInput input)
         {
-            if (!CheckMessageType(MessageTypePayment, input.MessageType))
-            {
-                throw new Exception("Message Type is not valid");
-            }
-
-            List<Account> accounts = repositoryService.GetAccounts();
-            
-            if (accounts.Find(item => item.AccountId == input.AccountId)== null)
-            {
-                throw new Exception("Account not found");
-            }
+            CheckInputMessage(input, MessageTypePayment);
             
             repositoryService.AddPaymentInput(input);
             
@@ -53,12 +43,36 @@ namespace PaymentMock.Services.impl
 
         public void Adjust(PaymentInput input)
         {
-            var data = this.repositoryService.GetPyPaymentInputs();
+            CheckInputMessage(input, MessageTypeAdjustment);
 
-            List<PaymentInput> test =  data.Where(item => item.AccountId == 4755 && item.TransactionId == 1981).ToList();
-            //return null;
+            List<PaymentInput> paymentInputs =
+                repositoryService.GetPaymentInputsByAccountIdAndTransactionId(input.AccountId, input.TransactionId);
+            
+            if (paymentInputs.Count == 0)
+            {
+                throw new Exception("Transaction not found");
+            }
 
-            var b = 6;
+            decimal oldAmount = paymentInputs[0].Amount;
+            decimal correctedAmount = input.Amount + oldAmount - input.Amount;
+            
+            repositoryService.UpdateAccount(input.AccountId, correctedAmount);
+        }
+
+        private void CheckInputMessage(PaymentInput input, string messageType)
+        {
+            if (!CheckMessageType(messageType, input.MessageType))
+            {
+                throw new Exception("Message Type is not valid");
+            }
+
+            List<Account> accounts = repositoryService.GetAccounts();
+            
+            if (accounts.Find(item => item.AccountId == input.AccountId)== null)
+            {
+                throw new Exception("Account not found");
+            }
+            
         }
 
         private decimal CalculateCommission(string origin, decimal amount )

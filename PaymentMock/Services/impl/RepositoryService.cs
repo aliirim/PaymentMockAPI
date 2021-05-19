@@ -40,7 +40,23 @@ namespace PaymentMock.Services.impl
             RepositoryService.PaymentInputs.Add(paymentInput);
         }
 
-        public List<PaymentInput> GetPyPaymentInputs() => RepositoryService.PaymentInputs;
+        public List<PaymentInput> GetPaymentInputsByAccountIdAndTransactionId(int accountId, int transactionId)
+        {
+            var data = GetPaymentInputs();
+
+            return data.Where(item => item.AccountId == accountId && item.TransactionId == transactionId).ToList();
+        }
+        
+        /*public void UpdatePaymentInfo(int accountId, int transactionId, decimal amount)
+        {
+            PaymentInput paymentInput = GetPaymentInputsByAccountIdAndTransactionId(accountId, transactionId)[0];
+
+            paymentInput.Amount = amount;
+            
+            InitDataContext.Accounts.Update(account);
+        }*/
+        
+        private List<PaymentInput> GetPaymentInputs() => RepositoryService.PaymentInputs;
 
     }
 }

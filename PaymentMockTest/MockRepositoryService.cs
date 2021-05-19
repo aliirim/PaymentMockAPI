@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using PaymentMock.DTOs;
 using PaymentMock.DTOs.Request;
 using PaymentMock.Services;
@@ -62,6 +63,13 @@ namespace PaymentMockTest
             MockRepositoryService.PaymentInputs.Add(paymentInput);
         }
 
-        public List<PaymentInput> GetPyPaymentInputs() => MockRepositoryService.PaymentInputs;
+        public List<PaymentInput> GetPaymentInputsByAccountIdAndTransactionId(int accountId, int transactionId)
+        {
+            var data = GetPaymentInputs();
+
+            return data.Where(item => item.AccountId == accountId && item.TransactionId == transactionId).ToList();
+        }
+        
+        private List<PaymentInput> GetPaymentInputs() => MockRepositoryService.PaymentInputs;
     }
 }

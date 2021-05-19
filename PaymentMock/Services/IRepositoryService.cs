@@ -10,6 +10,6 @@ namespace PaymentMock.Services
         decimal GetAmount(int accountId);
         void UpdateAccount(int accountId, decimal newAmount);
         void AddPaymentInput(PaymentInput paymentInput);
-        List<PaymentInput> GetPyPaymentInputs();
+        List<PaymentInput> GetPaymentInputsByAccountIdAndTransactionId(int accountId, int transactionId);
     }
 }
