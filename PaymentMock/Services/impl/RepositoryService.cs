@@ -53,7 +53,7 @@ namespace PaymentMock.Services.impl
 
             paymentInput.Amount = amount;
             
-            InitDataContext.Accounts.Update(account);
+            --InitDataContext.Accounts.Update(account);
         }*/
         
         private List<PaymentInput> GetPaymentInputs() => RepositoryService.PaymentInputs;
