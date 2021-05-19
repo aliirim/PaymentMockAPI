@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PaymentMock.DTOs;
 
 namespace PaymentMock
 {
@@ -44,9 +45,9 @@ namespace PaymentMock
         }
     }
 
-    public class Account
+    /*public class Account
     {
         public decimal Balance { get; set; }
         public int AccountId { get; set; }
-    }
+    }*/
 }

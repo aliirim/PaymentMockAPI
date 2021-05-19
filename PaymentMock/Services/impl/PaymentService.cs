@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PaymentMock.DTOs;
+using PaymentMock.DTOs.Request;
+using PaymentMock.Services;
 
-namespace PaymentMock
+namespace PaymentMock.Services.impl
 {
     public class PaymentService : IPaymentService
     {

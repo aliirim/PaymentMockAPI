@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
+using PaymentMock.Services;
+using PaymentMock.Services.impl;
 
 namespace PaymentMock
 {
@@ -23,9 +25,8 @@ namespace PaymentMock
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppContext>(opt => opt.UseInMemoryDatabase("sample"));
@@ -38,11 +39,8 @@ namespace PaymentMock
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,8 +59,5 @@ namespace PaymentMock
                 endpoints.MapControllers();
             });
         }
-
-
-       
     }
 }

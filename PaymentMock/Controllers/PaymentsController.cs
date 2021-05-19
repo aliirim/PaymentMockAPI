@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PaymentMock.DTOs;
+using PaymentMock.DTOs.Request;
+using PaymentMock.Services;
 
 namespace PaymentMock.Controllers
 {
@@ -13,32 +16,31 @@ namespace PaymentMock.Controllers
     {
         
         private readonly ILogger<PaymentsController> _logger;
-        private readonly IPaymentService paymentService;
+        private readonly IPaymentService _paymentService;
         
         public PaymentsController(ILogger<PaymentsController> logger,IPaymentService paymentService)
         {
             _logger = logger;
-            this.paymentService = paymentService;
-           
+            this._paymentService = paymentService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IEnumerable<Account> Get([FromQuery]PaymentInput input)
         {
-            var accounts= paymentService.GetAccounts(input);
+            var accounts= _paymentService.GetAccounts(input);
             return accounts;
-        }
+        }*/
 
-        [HttpPost("pay")]
+        [HttpPost("PAYMENT")]
         public IEnumerable<Account> Pay(PaymentInput input)
         {
-            return paymentService.GetAccounts(input);
+            return _paymentService.GetAccounts(input);
         }
 
-        [HttpPost("adjust")]
+        [HttpPost("ADJUSTMENT")]
         public IEnumerable<Account> Adjust(PaymentInput input)
         {
-            return paymentService.GetAccounts(input);
+            return _paymentService.GetAccounts(input);
         }
     }
 }
