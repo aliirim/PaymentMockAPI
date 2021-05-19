@@ -1,5 +1,4 @@
-﻿using PaymentMock.Controllers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PaymentMock.DTOs;
 using PaymentMock.DTOs.Request;
 
