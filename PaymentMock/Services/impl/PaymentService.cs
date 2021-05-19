@@ -9,12 +9,12 @@ namespace PaymentMock.Services.impl
     {
         private readonly RepositoryService _repositoryService;
 
-        private const string VISA = "VISA";
-        private const string MASTER = "MASTER";
-        private const string Message_Type_PAYMENT = "PAYMENT";
-        private const string Message_Type_ADJUSTMENT = "ADJUSTMENT";
-        private const decimal VISA_Commission_Rate = 0.01m;
-        private const decimal MASTER_Commission_Rate = 0.02m;
+        private const string Visa = "VISA";
+        private const string Master = "MASTER";
+        private const string MessageTypePayment = "PAYMENT";
+        private const string MessageTypeAdjustment = "ADJUSTMENT";
+        private const decimal VisaCommissionRate = 0.01m;
+        private const decimal MasterCommissionRate = 0.02m;
         
 
         public PaymentService(RepositoryService repositoryService)
@@ -29,7 +29,7 @@ namespace PaymentMock.Services.impl
 
         public void Pay(PaymentInput input)
         {
-            if (!CheckMessageType(Message_Type_PAYMENT, input.MessageType)) return;
+            if (!CheckMessageType(MessageTypePayment, input.MessageType)) return;
             
             decimal commission = CalculateCommission(input.Origin, input.Amount);
             decimal currentAmount = _repositoryService.GetAmount(input.AccountId);
@@ -45,12 +45,12 @@ namespace PaymentMock.Services.impl
 
         private decimal CalculateCommission(string origin, decimal amount )
         {
-            if (VISA.Equals(origin))
+            if (Visa.Equals(origin))
             {
-                return amount * VISA_Commission_Rate;
+                return amount * VisaCommissionRate;
             }
             
-            return amount * MASTER_Commission_Rate;
+            return amount * MasterCommissionRate;
         }
 
         private Boolean CheckMessageType(string messageType, string expectedMessageType)
