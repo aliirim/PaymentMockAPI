@@ -12,13 +12,13 @@ namespace PaymentMock.Controllers
     public class PaymentsController : ControllerBase
     {
         
-        private readonly ILogger<PaymentsController> _logger;
-        private readonly IPaymentService _paymentService;
+        private readonly ILogger<PaymentsController> logger;
+        private readonly IPaymentService paymentService;
         
         public PaymentsController(ILogger<PaymentsController> logger,IPaymentService paymentService)
         {
-            _logger = logger;
-            this._paymentService = paymentService;
+            this.logger = logger;
+            this.paymentService = paymentService;
         }
 
         /*[HttpGet]
@@ -31,15 +31,15 @@ namespace PaymentMock.Controllers
         [HttpPost("PAYMENT")]
         public IEnumerable<Account> Pay(PaymentInput input)
         {
-            _paymentService.Pay(input);
-            return _paymentService.GetAccounts();
+            paymentService.Pay(input);
+            return paymentService.GetAccounts();
         }
 
         [HttpPost("ADJUSTMENT")]
         public IEnumerable<Account> Adjust(PaymentInput input)
         {
-            _paymentService.Adjust(input);
-            return _paymentService.GetAccounts();
+            paymentService.Adjust(input);
+            return paymentService.GetAccounts();
         }
     }
 }
